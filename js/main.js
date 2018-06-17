@@ -2,17 +2,17 @@ const numPerPage = 10;
 let curStudentArray = [];
 
 // show student with a specific page number
-function showStudent(studentArray, pageNum){
+function showStudent(pageNum){
     // return immediately if the page number is wrong
-    if(isNaN(pageNum) || !studentArray || pageNum < 1 || pageNum > Math.ceil(studentArray.length / 10)) return false;
+    if(isNaN(pageNum) || !curStudentArray || curStudentArray.length == 0 || pageNum < 1 || pageNum > Math.ceil(curStudentArray.length / 10)) return false;
 
     // count the start and end index
     // PS: not array index
     const start_index = (pageNum - 1) * numPerPage + 1;
-    const end_index = pageNum * numPerPage > studentArray.length ? studentArray.length : pageNum * numPerPage;
+    const end_index = pageNum * numPerPage > curStudentArray.length ? curStudentArray.length : pageNum * numPerPage;
 
     // hide student item not in the page
-    $(studentArray).each((index, element) => {
+    $(curStudentArray).each((index, element) => {
         if(index >= start_index - 1 && index <= end_index -1){
             $(element).show();
         } else {
@@ -22,9 +22,9 @@ function showStudent(studentArray, pageNum){
 }
 
 // init pageNum button and add listener
-function initPageLink(studentArray){
+function initPageLink(){
     // count how many links do we need to add
-    const totalPageNum = Math.ceil(studentArray.length / numPerPage);
+    const totalPageNum = Math.ceil(curStudentArray.length / numPerPage);
     if(totalPageNum <= 1) return;    //wrong array or don't need page link
 
     // init the html of page link and append to the end of the page div
@@ -53,7 +53,7 @@ function pageLinkClick(event){
     $(this).addClass('active');
 
     //update student list to show
-    showStudent($('.student-item'), parseInt($(this).html()));
+    showStudent(parseInt($(this).html()));
 }
 
 // init search component
@@ -66,9 +66,21 @@ function searchStudent(){
 
 }
 
+// show search result
+function showSearchResult(){
+
+}
+
+// reset page
+function resetPage(){
+    
+}
+
+
+
 $(function(){
-    let studentArray = $('.student-item');
-    showStudent(studentArray, 1);  //show first page
-    initPageLink(studentArray);  //init page button
+    curStudentArray = $('.student-item');
+    showStudent(1);  //show first page
+    initPageLink();  //init page button
     initSearchComp();  //init search component
 });
