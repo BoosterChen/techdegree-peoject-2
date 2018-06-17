@@ -4,7 +4,7 @@ let curStudentArray = [];
 // show student with a specific page number
 function showStudent(pageNum){
     // return immediately if the page number is wrong
-    if(isNaN(pageNum) || !curStudentArray || curStudentArray.length == 0 || pageNum < 1 || pageNum > Math.ceil(curStudentArray.length / 10)) return false;
+    if(isNaN(pageNum) || !curStudentArray || curStudentArray.length === 0 || pageNum < 1 || pageNum > Math.ceil(curStudentArray.length / 10)) return false;
 
     // count the start and end index
     // PS: not array index
