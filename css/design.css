@@ -43,6 +43,14 @@ body{
       color: #fff
     }
 
+
+    .result{
+      font-size: 22px;
+      color: #555;
+      text-align: center;
+      margin: 40px 0;
+    }
+
 .student-list{}
 
   .student-item{
