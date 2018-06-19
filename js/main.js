@@ -4,7 +4,7 @@ let allSdudentArray = $('.student-item');
 
 // show student with a specific page number
 function showStudent(pageNum){
-    // return immediately if the page number is wrong
+    // return immediately if something is wrong
     if(isNaN(pageNum) || !curStudentArray || curStudentArray.length === 0 || pageNum < 1 || pageNum > Math.ceil(curStudentArray.length / 10)) return false;
 
     // count the start and end index
@@ -18,6 +18,7 @@ function showStudent(pageNum){
 
 // init pageNum button and add listener
 function initPageLink(){
+    // clear old page link
     if($('.pagination')){
         $('.pagination').remove();
     }
@@ -70,6 +71,7 @@ function initSearchComp(){
     $('#searchKeyWord').on('keyup', searchEventHandler);
 }
 
+// search event handler
 function searchEventHandler(){
     $('.no-result').hide();
     if($('#searchKeyWord').val() === ''){
@@ -79,7 +81,7 @@ function searchEventHandler(){
     }
 }
 
-// search student and update the array
+// search student and update the curStudentArray
 function searchStudent(keyword){
     curStudentArray = $(allSdudentArray).has(`h3:contains(${keyword})`);
     if(curStudentArray.length === 0){
